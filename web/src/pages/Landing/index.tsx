@@ -16,19 +16,19 @@ const Landing: React.FC = () => {
           <img src={logImg} alt="logo img" />
           <h2>Sua plataforma de estudos online</h2>
         </div>
-        <img src={landingImg} alt="" className="hero-image" />
+        <img src={landingImg} alt="plataforma estudos" className="hero-image" />
         <div className="buttons-container">
-          <a href="">
+          <a href="" className="study">
             <img src={studyIcon} alt="study" />
             Estudar
           </a>
-          <a href="">
-            <img src={giveClassesIcon} alt="give-class" />
+          <a href="" className="give-classes">
+            <img src={giveClassesIcon} alt="give-classes" />
             Dar aulas
           </a>
         </div>
         <span className="total-connections">
-          Total de 200 conexões já realizadas{" "}
+          Total de 200 conexões já realizadas
           <img src={purpleHeart} alt="coração-roxo" />
         </span>
       </div>
