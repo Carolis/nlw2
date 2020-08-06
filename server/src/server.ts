@@ -4,6 +4,6 @@ import routes from "./routes";
 const app = express();
 
 app.use(express.json());
-ApplicationCache.arguments(routes);
+app.use(routes);
 
 app.listen(3333);
