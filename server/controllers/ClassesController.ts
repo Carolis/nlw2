@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
-import db from "../database/connection";
-import convertHourToMinutes from "../utils/convertHourToMinutes";
+import db from "../src/database/connection";
+import convertHourToMinutes from "../src/utils/convertHourToMinutes";
 
 interface ScheduleItem {
   week_day: number;
@@ -10,6 +10,29 @@ interface ScheduleItem {
 }
 
 export default class ClassesController {
+  async index(request: Request, response: Response) {
+    const filters = request.query;
+
+    const subject = filters.subject as string;
+    const week_day = filters.subject as string;
+    const time = filters.time as string;
+
+    if (!filters.subject || !filters.week_day || !filters.time) {
+      return response.status(400).json({
+        error: "Missing filters",
+      });
+    }
+
+    const timeInMinutes = convertHourToMinutes(time);
+
+    const classes = await db("classes")
+      .where("classes .subject", "=", subject)
+      .join("users", "classes.user_id", "=", "users.id")
+      .select(["classes.*", "users.*"]);
+
+      
+    return response.json(classes);
+  }
   async create(request: Request, response: Response) {
     const {
       name,
